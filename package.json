@@ -1,7 +1,7 @@
 {
-    "name": "reactjs-vite-tailwind-vercel",
+    "name": "earn-online-guide",
     "version": "1.0.0",
-    "description": "ReactJS app with Vite, Tailwind",
+    "description": "Guide to earning money online",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -12,7 +12,8 @@
     "dependencies": {
         "@sentry/browser": "^8.41.0",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.22.0"
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^4.3.4",
