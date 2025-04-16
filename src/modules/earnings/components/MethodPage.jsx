@@ -48,6 +48,27 @@ export default function MethodPage() {
         </div>
         
         <div className="p-6">
+          <div className="flex flex-wrap gap-4 mb-6">
+            <Link
+              to="/income-calculator" 
+              className="inline-flex items-center text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full text-sm font-medium"
+            >
+              🧮 Calculate Potential Income
+            </Link>
+            <Link
+              to="/get-started" 
+              className="inline-flex items-center text-green-600 bg-green-50 hover:bg-green-100 px-3 py-1 rounded-full text-sm font-medium"
+            >
+              🚀 Getting Started Guide
+            </Link>
+            <Link
+              to="/success-stories" 
+              className="inline-flex items-center text-orange-600 bg-orange-50 hover:bg-orange-100 px-3 py-1 rounded-full text-sm font-medium"
+            >
+              🏆 Success Stories
+            </Link>
+          </div>
+          
           <p className="text-lg text-gray-700 mb-6">{method.description}</p>
           
           {/* Key Info */}
@@ -80,6 +101,83 @@ export default function MethodPage() {
               {method.fullDescription.split('\n\n').map((paragraph, index) => (
                 <p key={index} className="mb-4">{paragraph}</p>
               ))}
+            </div>
+          </div>
+          
+          {/* Getting Started */}
+          <div className="mb-8 bg-blue-50 rounded-lg p-6">
+            <h2 className="text-2xl font-bold mb-4">Getting Started</h2>
+            <p className="mb-4">Here's a quick guide to get started with {method.name}:</p>
+            
+            <ol className="list-decimal pl-5 space-y-3">
+              {method.categoryId === 'freelancing' && (
+                <>
+                  <li><strong>Build your skills:</strong> Master the core skills needed for {method.name.toLowerCase()}. Use free online tutorials and courses.</li>
+                  <li><strong>Create a portfolio:</strong> Develop sample projects that showcase your abilities to potential clients.</li>
+                  <li><strong>Set up profiles:</strong> Create accounts on relevant freelance platforms like {method.platforms.slice(0, 2).map(p => p.name).join(' and ')}.</li>
+                  <li><strong>Start small:</strong> Take on smaller projects initially to build reviews and confidence.</li>
+                  <li><strong>Increase rates gradually:</strong> As you gain experience and positive feedback, incrementally raise your rates.</li>
+                </>
+              )}
+              
+              {method.categoryId === 'remote-jobs' && (
+                <>
+                  <li><strong>Update your resume:</strong> Customize it to highlight skills relevant to {method.name.toLowerCase()}.</li>
+                  <li><strong>Create online profiles:</strong> Set up accounts on job platforms like {method.platforms.slice(0, 2).map(p => p.name).join(' and ')}.</li>
+                  <li><strong>Prepare your workspace:</strong> Ensure you have reliable internet and a quiet place to work.</li>
+                  <li><strong>Develop necessary skills:</strong> Take courses or get certifications that will make you stand out.</li>
+                  <li><strong>Apply consistently:</strong> Set a goal for daily applications and follow up appropriately.</li>
+                </>
+              )}
+              
+              {method.categoryId === 'passive-income' && (
+                <>
+                  <li><strong>Research the market:</strong> Study successful examples of {method.name.toLowerCase()} to understand what works.</li>
+                  <li><strong>Create your first asset:</strong> Start small but focus on quality over quantity.</li>
+                  <li><strong>Set up on platforms:</strong> Create accounts on {method.platforms.slice(0, 2).map(p => p.name).join(' and ')} to distribute your work.</li>
+                  <li><strong>Optimize for discoverability:</strong> Learn basic SEO and use proper tags/keywords for your content.</li>
+                  <li><strong>Scale gradually:</strong> Reinvest early earnings to create more assets and increase your passive income.</li>
+                </>
+              )}
+              
+              {method.categoryId === 'content-creation' && (
+                <>
+                  <li><strong>Define your niche:</strong> Choose a specific topic or audience focus for your content.</li>
+                  <li><strong>Set up your channels:</strong> Create accounts on relevant platforms like {method.platforms.slice(0, 2).map(p => p.name).join(' and ')}.</li>
+                  <li><strong>Plan your content:</strong> Develop a content calendar to maintain consistency.</li>
+                  <li><strong>Create quality content:</strong> Focus on providing value to your audience before monetization.</li>
+                  <li><strong>Engage with your audience:</strong> Respond to comments and build a community around your content.</li>
+                </>
+              )}
+              
+              {method.categoryId === 'ecommerce' && (
+                <>
+                  <li><strong>Research products:</strong> Find products or designs with market demand and reasonable competition.</li>
+                  <li><strong>Set up shop:</strong> Create accounts on platforms like {method.platforms.slice(0, 2).map(p => p.name).join(' and ')}.</li>
+                  <li><strong>Source products/create designs:</strong> Develop high-quality offerings that stand out.</li>
+                  <li><strong>Optimize listings:</strong> Create professional product descriptions and high-quality images.</li>
+                  <li><strong>Market your products:</strong> Develop a strategy to drive traffic to your listings.</li>
+                </>
+              )}
+              
+              {method.categoryId === 'teaching' && (
+                <>
+                  <li><strong>Define your teaching niche:</strong> Identify specific subjects where you have expertise.</li>
+                  <li><strong>Create teaching profiles:</strong> Set up accounts on platforms like {method.platforms.slice(0, 2).map(p => p.name).join(' and ')}.</li>
+                  <li><strong>Develop your materials:</strong> Create lesson plans or course outlines for your subjects.</li>
+                  <li><strong>Set up your teaching environment:</strong> Ensure good lighting, audio, and background for online teaching.</li>
+                  <li><strong>Start with a few students:</strong> Build reviews and improve your methods before scaling up.</li>
+                </>
+              )}
+            </ol>
+            
+            <div className="mt-4">
+              <Link to="/get-started" className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                View Detailed Getting Started Guide
+                <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
             </div>
           </div>
           
@@ -162,6 +260,39 @@ export default function MethodPage() {
               ))}
             </div>
           </div>
+          
+          {/* Tools and Resources */}
+          <div className="mb-8 bg-gray-50 p-6 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4">Helpful Tools</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Link 
+                to="/income-calculator" 
+                className="bg-white hover:bg-blue-50 border border-gray-200 hover:border-blue-300 p-4 rounded-lg flex flex-col items-center text-center"
+              >
+                <div className="text-3xl mb-2">🧮</div>
+                <div className="font-semibold mb-1">Income Calculator</div>
+                <div className="text-sm text-gray-600">Estimate your potential earnings</div>
+              </Link>
+              
+              <Link 
+                to="/compare" 
+                className="bg-white hover:bg-blue-50 border border-gray-200 hover:border-blue-300 p-4 rounded-lg flex flex-col items-center text-center"
+              >
+                <div className="text-3xl mb-2">⚖️</div>
+                <div className="font-semibold mb-1">Compare Methods</div>
+                <div className="text-sm text-gray-600">Compare with other earning options</div>
+              </Link>
+              
+              <Link 
+                to="/resources" 
+                className="bg-white hover:bg-blue-50 border border-gray-200 hover:border-blue-300 p-4 rounded-lg flex flex-col items-center text-center"
+              >
+                <div className="text-3xl mb-2">📚</div>
+                <div className="font-semibold mb-1">Learning Resources</div>
+                <div className="text-sm text-gray-600">Find courses and tools to help you succeed</div>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -175,7 +306,7 @@ export default function MethodPage() {
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{relatedMethod.name}</h3>
                   <p className="text-gray-700 mb-4">{relatedMethod.description}</p>
-                  <Link to={`/method/${relatedMethod.id}`} className="text-blue-600 font-medium inline-flex items-center">
+                  <Link to={`/method/${relatedMethod.id}`} className="text-blue-600 font-medium inline-flex items-center cursor-pointer">
                     View Details
                     <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -190,14 +321,14 @@ export default function MethodPage() {
       
       {/* Back Button */}
       <div className="flex justify-between items-center">
-        <Link to={`/category/${category.id}`} className="text-blue-600 font-medium flex items-center">
+        <Link to={`/category/${category.id}`} className="text-blue-600 font-medium flex items-center cursor-pointer">
           <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
           </svg>
           Back to {category.name}
         </Link>
         
-        <Link to="/" className="text-blue-600 font-medium flex items-center">
+        <Link to="/" className="text-blue-600 font-medium flex items-center cursor-pointer">
           View All Categories
           <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />

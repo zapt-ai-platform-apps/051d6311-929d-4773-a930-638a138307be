@@ -4,10 +4,21 @@ import { earningCategories } from '../../earnings/data/categories';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    if (isToolsOpen) setIsToolsOpen(false);
+  };
+
+  const toggleTools = () => {
+    setIsToolsOpen(!isToolsOpen);
+  };
+
+  const closeMenus = () => {
+    setIsMenuOpen(false);
+    setIsToolsOpen(false);
   };
 
   return (
@@ -59,12 +70,72 @@ export default function Header() {
               </Link>
             ))}
             
-            <Link 
-              to="/resources" 
-              className={`font-medium ${location.pathname === '/resources' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
-            >
-              Resources
-            </Link>
+            <div className="relative">
+              <button 
+                onClick={toggleTools}
+                className={`font-medium flex items-center ${
+                  ['/path-finder', '/income-calculator', '/get-started', '/success-stories', '/compare'].includes(location.pathname) 
+                    ? 'text-blue-600' 
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
+              >
+                Tools & Resources
+                <svg 
+                  className={`ml-1 w-4 h-4 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} 
+                  fill="currentColor" 
+                  viewBox="0 0 20 20"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {isToolsOpen && (
+                <div className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg z-20 py-1">
+                  <Link 
+                    to="/path-finder" 
+                    onClick={closeMenus}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    👣 Find Your Earning Path
+                  </Link>
+                  <Link 
+                    to="/income-calculator" 
+                    onClick={closeMenus}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    🧮 Income Calculator
+                  </Link>
+                  <Link 
+                    to="/compare" 
+                    onClick={closeMenus}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    ⚖️ Compare Methods
+                  </Link>
+                  <Link 
+                    to="/get-started" 
+                    onClick={closeMenus}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    🚀 Getting Started Guide
+                  </Link>
+                  <Link 
+                    to="/success-stories" 
+                    onClick={closeMenus}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    🏆 Success Stories
+                  </Link>
+                  <Link 
+                    to="/resources" 
+                    onClick={closeMenus}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    📚 Learning Resources
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
         </div>
 
@@ -75,7 +146,7 @@ export default function Header() {
               <Link 
                 to="/" 
                 className={`p-2 rounded ${location.pathname === '/' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenus}
               >
                 Home
               </Link>
@@ -85,19 +156,57 @@ export default function Header() {
                   key={category.id} 
                   to={`/category/${category.id}`}
                   className={`p-2 rounded ${location.pathname === `/category/${category.id}` ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={closeMenus}
                 >
                   {category.name}
                 </Link>
               ))}
               
-              <Link 
-                to="/resources" 
-                className={`p-2 rounded ${location.pathname === '/resources' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Resources
-              </Link>
+              <div className="border-t border-gray-200 pt-2">
+                <div className="font-medium p-2 text-gray-500">Tools & Resources</div>
+                <Link 
+                  to="/path-finder" 
+                  className={`p-2 pl-4 rounded ${location.pathname === '/path-finder' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                  onClick={closeMenus}
+                >
+                  👣 Find Your Earning Path
+                </Link>
+                <Link 
+                  to="/income-calculator" 
+                  className={`p-2 pl-4 rounded ${location.pathname === '/income-calculator' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                  onClick={closeMenus}
+                >
+                  🧮 Income Calculator
+                </Link>
+                <Link 
+                  to="/compare" 
+                  className={`p-2 pl-4 rounded ${location.pathname === '/compare' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                  onClick={closeMenus}
+                >
+                  ⚖️ Compare Methods
+                </Link>
+                <Link 
+                  to="/get-started" 
+                  className={`p-2 pl-4 rounded ${location.pathname === '/get-started' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                  onClick={closeMenus}
+                >
+                  🚀 Getting Started Guide
+                </Link>
+                <Link 
+                  to="/success-stories" 
+                  className={`p-2 pl-4 rounded ${location.pathname === '/success-stories' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                  onClick={closeMenus}
+                >
+                  🏆 Success Stories
+                </Link>
+                <Link 
+                  to="/resources" 
+                  className={`p-2 pl-4 rounded ${location.pathname === '/resources' ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                  onClick={closeMenus}
+                >
+                  📚 Learning Resources
+                </Link>
+              </div>
             </div>
           </nav>
         )}

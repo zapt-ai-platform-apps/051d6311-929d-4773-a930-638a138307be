@@ -6,6 +6,11 @@ import HomePage from './modules/earnings/components/HomePage';
 import CategoryPage from './modules/earnings/components/CategoryPage';
 import MethodPage from './modules/earnings/components/MethodPage';
 import ResourcesPage from './modules/earnings/components/ResourcesPage';
+import PathFinder from './modules/earnings/components/PathFinder';
+import IncomeCalculator from './modules/earnings/components/IncomeCalculator';
+import GetStartedGuide from './modules/earnings/components/GetStartedGuide';
+import SuccessStories from './modules/earnings/components/SuccessStories';
+import ComparisonTool from './modules/earnings/components/ComparisonTool';
 import ZaptBadge from './modules/core/components/ZaptBadge';
 import ScrollToTop from './modules/core/components/ScrollToTop';
 
@@ -20,6 +25,11 @@ export default function App() {
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/method/:methodId" element={<MethodPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/path-finder" element={<PathFinder />} />
+          <Route path="/income-calculator" element={<IncomeCalculator />} />
+          <Route path="/get-started" element={<GetStartedGuide />} />
+          <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/compare" element={<ComparisonTool />} />
         </Routes>
       </main>
       <Footer />
